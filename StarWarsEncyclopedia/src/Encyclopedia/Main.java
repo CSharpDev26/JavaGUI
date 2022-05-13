@@ -1,15 +1,14 @@
 package Encyclopedia;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.FlowLayout;
 
 public class Main {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -38,23 +37,12 @@ public class Main {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		final ImageIcon icon = new ImageIcon("images/background/galaxy.jpg");
 		frame = new JFrame();
 		frame.setSize(1920, 1080);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
-		JPanel backGroundPanel = new JPanel(){
-			Image img = icon.getImage();
-		      {setOpaque(false);}
-		      public void paintComponent(Graphics graphics) 
-		      {
-		        graphics.drawImage(img, 0, 0, this);
-		        super.paintComponent(graphics);
-		      }
-		};
-		backGroundPanel.setLocation(0, 0);
-		backGroundPanel.setSize(1904, 1041);;
-		frame.getContentPane().add(backGroundPanel);
+		TheBrain brain = new TheBrain();
+		JPanel backPanel = brain.createBackgroundPanel();
+		frame.getContentPane().add(backPanel);
+		frame.setJMenuBar(brain.createMenu(backPanel));
 	}
 }
