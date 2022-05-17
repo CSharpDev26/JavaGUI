@@ -31,7 +31,7 @@ public class DataManagement {
 		return planetNames;
 	}
 	public Object[] getPlanetData(String name) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		Object[] result = new Object[9];
+		Object[] result = new Object[10];
 		Connection con = createConnection();
 		PreparedStatement ps = con.prepareStatement("SELECT * FROM Planets WHERE name = ?" );
 		ps.setString(1, name);
@@ -46,6 +46,7 @@ public class DataManagement {
 			result[6] = rs.getString(7);
 			result[7] = rs.getString(8);
 			result[8] = rs.getString(9);
+			result[9] = rs.getInt(10);
 		}
 		con.close();
 		return result;
