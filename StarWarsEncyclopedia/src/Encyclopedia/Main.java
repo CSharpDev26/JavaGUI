@@ -52,7 +52,7 @@ public class Main {
 	private void initialize() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		frame = new JFrame();
 		frame.getContentPane().setLayout(null);
-		frame.setSize(1920, 1080);
+		frame.setSize(1300, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		TheBrain brain = new TheBrain();
 		JPanel backPanel = brain.createBackgroundPanel();

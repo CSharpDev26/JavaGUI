@@ -13,7 +13,7 @@ public class PlanetClass {
 		DataManagement dm = new DataManagement();
 		ArrayList<JMenuItem> list = new ArrayList<JMenuItem>();
 		ArrayList<String> names;
-		names = dm.getPlanetNames();
+		names = dm.getNames("planets");
 		for(String name: names) {
 			JMenuItem menuItem = new JMenuItem(name);
 			menuItem.addActionListener(new ActionListener() {
@@ -53,99 +53,99 @@ public class PlanetClass {
 	private JPanel imagePanel(String imageName) {
 		JPanel imagePanel = new JPanel();
 		imagePanel.setLayout(null);
-		imagePanel.setBounds(10, 10, 400, 400);
+		imagePanel.setBounds(55, 10, 293, 294);
 		String imageFullName = "images/planets/" + imageName;
 		ImageIcon iC = new ImageIcon(imageFullName);
 		Image planetImage = iC.getImage();  
-		Image resized_img = planetImage.getScaledInstance(400, 400,  java.awt.Image.SCALE_SMOOTH); 
-		iC = new ImageIcon(resized_img);  
-		JLabel image_label = new JLabel();
-		image_label.setBounds(0, 0, 400, 400);
-		image_label.setIcon(iC);
-		imagePanel.add(image_label);
+		Image resizedImg = planetImage.getScaledInstance(293, 294,  java.awt.Image.SCALE_SMOOTH); 
+		iC = new ImageIcon(resizedImg);  
+		JLabel imageLabel = new JLabel();
+		imageLabel.setBounds(0, 0, 293, 294);
+		imageLabel.setIcon(iC);
+		imagePanel.add(imageLabel);
 		return imagePanel;
 	}
 	
 	private JPanel descriptionPanel(String desc) {
-		JPanel desc_Panel = new JPanel();
-		desc_Panel.setLayout(null);
-		desc_Panel.setBounds(583, 121, 769, 629);
-		desc_Panel.setOpaque(false);
+		JPanel descPanel = new JPanel();
+		descPanel.setLayout(null);
+		descPanel.setBounds(418, 226, 478, 578);
+		descPanel.setOpaque(false);
 		JTextArea description_TA = new JTextArea();
-		description_TA.setBounds(137, 87, 469, 427);
+		description_TA.setBounds(10, 11, 458, 556);
 		description_TA.setText(desc);
 		textEditor(description_TA);
-		desc_Panel.add(description_TA);
-		return desc_Panel;
+		descPanel.add(description_TA);
+		return descPanel;
 	}
 	
 	private JPanel titlePanel(String name) {
-		JPanel name_panel = new JPanel();
-		name_panel.setLayout(null);
-		name_panel.setBounds(781, 23, 343, 45);
-		name_panel.setOpaque(false);
+		JPanel namePanel = new JPanel();
+		namePanel.setLayout(null);
+		namePanel.setBounds(532, 21, 343, 45);
+		namePanel.setOpaque(false);
 		JTextArea name_TA = new JTextArea();
 		name_TA.setText(name);
 		textEditor(name_TA);
 		name_TA.setBounds(79, 11, 254, 26);
-		name_panel.add(name_TA);
-		return name_panel;
+		namePanel.add(name_TA);
+		return namePanel;
 	} 
 	
 	private JPanel floraFaunaPanel(String flora, String fauna) {
-		JPanel fauna_flora_panel = new JPanel();
-		fauna_flora_panel.setLayout(null);
-		fauna_flora_panel.setBounds(1481, 121, 327, 629);
-		fauna_flora_panel.setOpaque(false);
+		JPanel faunaFloraPanel = new JPanel();
+		faunaFloraPanel.setLayout(null);
+		faunaFloraPanel.setBounds(935, 139, 283, 578);
+		faunaFloraPanel.setOpaque(false);
 		
 		//JTextPane a = new JTextPane();
 		JTextArea fauna_TA = new JTextArea();
-		fauna_TA.setBounds(10, 56, 307, 187);
+		fauna_TA.setBounds(10, 56, 242, 187);
 		fauna_TA.append("    Fauna \n\n");
 		listTextEditor(fauna_TA, fauna);
-		fauna_flora_panel.add(fauna_TA);
+		faunaFloraPanel.add(fauna_TA);
 		
 		JTextArea flora_TA = new JTextArea();
-		flora_TA.setBounds(10, 340, 307, 219);
+		flora_TA.setBounds(10, 340, 242, 219);
 		flora_TA.append("    Flora \n\n");
 		listTextEditor(flora_TA, flora);
-		fauna_flora_panel.add(flora_TA);
+		faunaFloraPanel.add(flora_TA);
 		
-		return fauna_flora_panel;
+		return faunaFloraPanel;
 	}
 	
 	private JPanel otherDataPanel(String atmosphere, Integer moons, Integer diameter, Integer suns) {
-		JPanel other_data_panel = new JPanel();
-		other_data_panel.setLayout(null);
-		other_data_panel.setBounds(50, 458, 461, 519);
-		other_data_panel.setOpaque(false);
+		JPanel otherDataPanel = new JPanel();
+		otherDataPanel.setLayout(null);
+		otherDataPanel.setBounds(45, 315, 374, 519);
+		otherDataPanel.setOpaque(false);
 		
 		JTextArea atmosphere_TA = new JTextArea();
-		atmosphere_TA.setBounds(42, 79, 269, 173);
+		atmosphere_TA.setBounds(10, 79, 269, 173);
 		atmosphere_TA.append("    Atmosphere \n\n");
 		listTextEditor(atmosphere_TA,atmosphere);
-		other_data_panel.add(atmosphere_TA);
+		otherDataPanel.add(atmosphere_TA);
 		
 		JTextArea diameter_TA = new JTextArea();
-		diameter_TA.setBounds(42, 328, 409, 31);
-		String temp = "Diameter: " + diameter + " kilometers"; 
+		diameter_TA.setBounds(10, 329, 364, 31);
+		String temp = "Diameter: " + diameter + " km"; 
 		diameter_TA.append(temp);
 		textEditor(diameter_TA);
-		other_data_panel.add(diameter_TA);
+		otherDataPanel.add(diameter_TA);
 		
 		JTextArea suns_TA = new JTextArea();
-		suns_TA.setBounds(42, 403, 269, 31);
+		suns_TA.setBounds(10, 398, 269, 31);
 		suns_TA.append("Suns: " + suns);
 		textEditor(suns_TA);
-		other_data_panel.add(suns_TA);
+		otherDataPanel.add(suns_TA);
 		
 		JTextArea moons_TA = new JTextArea();
-		moons_TA.setBounds(42, 440, 269, 31);
+		moons_TA.setBounds(10, 439, 269, 31);
 		moons_TA.append("Moons: " + moons);
 		textEditor(moons_TA);
-		other_data_panel.add(moons_TA);
+		otherDataPanel.add(moons_TA);
 		
-		return other_data_panel;
+		return otherDataPanel;
 	}
 	
 	private void textEditor(JTextArea TA) {
