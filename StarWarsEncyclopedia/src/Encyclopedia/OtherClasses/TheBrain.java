@@ -1,11 +1,11 @@
-package Encyclopedia;
+package Encyclopedia.OtherClasses;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.*;
+
+import Encyclopedia.Menuclasses.*;
 
 public class TheBrain {
 
@@ -33,6 +33,9 @@ public class TheBrain {
 		planetMenuCreator(planetMenu,backPanel);
 		jmb.add(planetMenu);
 		jmb.add(peopleMenuCreator(backPanel));
+		JMenu faunaMenu = new JMenu("Fauna");
+		faunaMenuCreator(faunaMenu,backPanel);
+		jmb.add(faunaMenu);
 		return jmb;
 	}
 	
@@ -79,4 +82,13 @@ public class TheBrain {
 			menu.add(item);
 		}
 	}
+
+	private void faunaMenuCreator(JMenu menu, JPanel backPanel) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		FaunaClass fC = new FaunaClass();
+		ArrayList<JMenuItem> faunaNameList = fC.createMenu(backPanel);
+		for(JMenuItem item : faunaNameList) {
+			menu.add(item);
+		}
+	}
+	
 }
