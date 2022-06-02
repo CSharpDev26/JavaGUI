@@ -30,12 +30,15 @@ public class TheBrain {
 	public JMenuBar createMenu(JPanel backPanel) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		JMenuBar jmb = new JMenuBar();
 		JMenu planetMenu = new JMenu("Planets");
-		planetMenuCreator(planetMenu,backPanel);
+		planetMenuCreator(planetMenu, backPanel);
 		jmb.add(planetMenu);
 		jmb.add(peopleMenuCreator(backPanel));
 		JMenu faunaMenu = new JMenu("Fauna");
-		faunaMenuCreator(faunaMenu,backPanel);
+		faunaMenuCreator(faunaMenu, backPanel);
 		jmb.add(faunaMenu);
+		JMenu floraMenu = new JMenu("Flora");
+		floraMenuCreator(floraMenu, backPanel);
+		jmb.add(floraMenu);
 		return jmb;
 	}
 	
@@ -87,6 +90,14 @@ public class TheBrain {
 		FaunaClass fC = new FaunaClass();
 		ArrayList<JMenuItem> faunaNameList = fC.createMenu(backPanel);
 		for(JMenuItem item : faunaNameList) {
+			menu.add(item);
+		}
+	}
+	
+	private void floraMenuCreator(JMenu menu, JPanel backPanel) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		FloraClass fC = new FloraClass();
+		ArrayList<JMenuItem> floraNameList = fC.createMenu(backPanel);
+		for(JMenuItem item : floraNameList) {
 			menu.add(item);
 		}
 	}

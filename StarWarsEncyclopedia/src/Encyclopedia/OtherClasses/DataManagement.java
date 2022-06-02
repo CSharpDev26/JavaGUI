@@ -33,6 +33,9 @@ public class DataManagement {
 	private String createNamesQuery(String type) {
 		String query = null;
 		switch(type) {
+		case "floras":
+			query = "SELECT name FROM floras";
+			break;
 		case "faunas":
 			query = "SELECT name FROM faunas";
 			break;
@@ -135,6 +138,19 @@ public class DataManagement {
 			result[8] = rs.getString(9);
 			result[9] = rs.getString(10);
 			result[10] = rs.getString(11);
+		}
+		con.close();
+		return result;
+	}
+	public Object[] getFloraData(String name) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		//TO-DO
+		Object[] result = new Object[10];
+		Connection con = createConnection();
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM faunas WHERE name = ?" );
+		ps.setString(1, name);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			
 		}
 		con.close();
 		return result;

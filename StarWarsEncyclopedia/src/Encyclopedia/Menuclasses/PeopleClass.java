@@ -105,7 +105,7 @@ public class PeopleClass {
 		homeWorld_TA.setBounds(10, 40, 215, 66);
 		String homeWorldfull;
 		if(homeworld.isEmpty())
-			homeWorldfull = "Homeworld: \n Unknown";
+			homeWorldfull = "Homeworld: \nUnknown";
 		else
 			homeWorldfull = "Homeworld: \n" + homeworld;
 		homeWorld_TA.setText(homeWorldfull);
@@ -116,7 +116,7 @@ public class PeopleClass {
 		born_TA.setBounds(10, 117, 215, 67);
 		String bornFull;
 		if(born.isEmpty())
-			bornFull = "Born: \n Unknown";
+			bornFull = "Born: \nUnknown";
 		else
 			bornFull = "Born: \n" + born;
 		born_TA.setText(bornFull);
@@ -127,7 +127,7 @@ public class PeopleClass {
 		died_TA.setBounds(10, 195, 215, 66);
 		String diedFull;
 		if(died.isEmpty())
-			diedFull = "Died: \n Unknown";
+			diedFull = "Died: \nUnknown";
 		else
 			diedFull = "Died: \n" + died;
 		died_TA.setText(diedFull);
@@ -137,11 +137,21 @@ public class PeopleClass {
 	}
 	
 	private JPanel detailsPanel(String species, String gender, Double height, Integer mass, String hairColor, String skinColor, String eyeColor, FrontEndClass fec ) {
+		String heightHolder, massHolder;
+		if(height == 0.0)
+			heightHolder = new String();
+		else
+			heightHolder = height.toString();
+		if(mass == 0)
+			massHolder = new String();
+		else
+			massHolder = mass.toString();
+		
 		String[] textData = new String[7];
 		textData[0] = species;
 		textData[1] = gender;
-		textData[2] = height.toString();
-		textData[3] = mass.toString();
+		textData[2] = heightHolder;
+		textData[3] = massHolder;
 		textData[4] = hairColor;
 		textData[5] = skinColor;
 		textData[6] = eyeColor;
