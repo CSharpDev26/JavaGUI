@@ -12,16 +12,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import Encyclopedia.Interfaces.MenuInterface;
 import Encyclopedia.OtherClasses.DataManagement;
 import Encyclopedia.OtherClasses.FrontEndClass;
 
-public class FaunaClass {
+public class FaunaClass implements MenuInterface {
 	
 	public ArrayList<JMenuItem> createMenu(JPanel backPanel) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-		DataManagement dm = new DataManagement();
+		DataManagement dm = DataManagement.getInstance();
 		ArrayList<JMenuItem> list = new ArrayList<JMenuItem>();
 		ArrayList<String> names;
-		FrontEndClass fec = new FrontEndClass();
+		FrontEndClass fec = FrontEndClass.getInstance();
 		names = dm.getNames("faunas");
 		for(String name: names) {
 			JMenuItem menuItem = new JMenuItem(name);
@@ -44,7 +45,7 @@ public class FaunaClass {
 	}
 	
 	private void contentPanelCreator(JPanel backPanel, String name, FrontEndClass fec) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		DataManagement dm = new DataManagement();
+		DataManagement dm = DataManagement.getInstance();
 		Object [] faunaData = dm.getFaunaData(name);
 		
 		backPanel.removeAll();
@@ -60,7 +61,7 @@ public class FaunaClass {
 		backPanel.repaint();
 	}
 	
-	private JPanel imagePanel(String imageName) {
+	public JPanel imagePanel(String imageName) {
 		JPanel imagePanel = new JPanel();
 		imagePanel.setBounds(473, 82, 340, 249);
 		imagePanel.setLayout(null);
@@ -78,7 +79,7 @@ public class FaunaClass {
 		return imagePanel;
 	}
 	
-	private JPanel titlePanel(String name, FrontEndClass fec) {
+	public JPanel titlePanel(String name, FrontEndClass fec) {
 		JPanel titlePanel = new JPanel();
 		titlePanel.setBounds(517, 11, 340, 47);
 		titlePanel.setLayout(null);
@@ -92,7 +93,7 @@ public class FaunaClass {
 		return titlePanel;
 	}
 	
-	private JPanel descPanel(String desc, FrontEndClass fec) {
+	public JPanel descPanel(String desc, FrontEndClass fec) {
 		JPanel descriptionPanel = new JPanel();
 		descriptionPanel.setBounds(350, 342, 584, 380);
 		descriptionPanel.setLayout(null);
@@ -184,7 +185,7 @@ public class FaunaClass {
 		
 	}
 	
-	private JPanel affiliationPanel() {
+	public JPanel affiliationPanel() {
 		JPanel affiliationPanel = new JPanel();
 		affiliationPanel.setBounds(303, 733, 683, 95);
 		affiliationPanel.setLayout(null);

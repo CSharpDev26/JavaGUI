@@ -6,7 +6,20 @@ import java.awt.Font;
 import javax.swing.JTextArea;
 
 public class FrontEndClass {
-	//Singleton
+	
+	static FrontEndClass instance = null;
+	
+	private FrontEndClass() {}
+	
+	public static FrontEndClass getInstance() {
+		if(instance != null)
+			return instance;
+		else {
+			instance = new FrontEndClass();
+			return instance;
+		}
+	}
+	
 	public void textEditor(JTextArea TA) {
 		//Segoe Script
 		TA.setFont(new Font("Verdana", Font.BOLD, 20));
@@ -21,7 +34,7 @@ public class FrontEndClass {
 	public void listTextEditor(JTextArea TA, String text) {
 		String[] textContainer = text.split(",");
 		for(String word: textContainer) {
-			TA.append( "-" + word + "\n");
+			TA.append( "- " + word + "\n");
 		}
 		textEditor(TA);
 	}

@@ -6,15 +6,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+import Encyclopedia.Interfaces.MenuInterface;
 import Encyclopedia.OtherClasses.*;
 
-public class PeopleClass {
+public class PeopleClass implements MenuInterface {
 	
 	public ArrayList<JMenuItem> createMenu(JPanel backPanel, String type) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-		DataManagement dm = new DataManagement();
+		DataManagement dm = DataManagement.getInstance();
 		ArrayList<JMenuItem> list = new ArrayList<JMenuItem>();
 		ArrayList<String> names = dm.getNames(type);
-		FrontEndClass fec = new FrontEndClass();
+		FrontEndClass fec = FrontEndClass.getInstance();
 		for(String name: names) {
 			JMenuItem menuItem = new JMenuItem(name);
 			menuItem.addActionListener(new ActionListener() {
@@ -36,7 +38,7 @@ public class PeopleClass {
 	}
 	
 	private void contentPanelCreator(JPanel backPanel, String name, FrontEndClass fec) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		DataManagement dm = new DataManagement();
+		DataManagement dm = DataManagement.getInstance();
 		Object [] personData = dm.getPersonData(name);
 		
 		backPanel.removeAll();
@@ -52,7 +54,7 @@ public class PeopleClass {
 		backPanel.repaint();
 	}	
 	
-	private JPanel imagePanel(String imageName) {
+	public JPanel imagePanel(String imageName) {
 		JPanel imagePanel = new JPanel();
 		imagePanel.setBounds(485, 75, 315, 237);
 		imagePanel.setLayout(null);
@@ -68,7 +70,7 @@ public class PeopleClass {
 		return imagePanel;
 	}
 	
-	private JPanel titlePanel(String name, FrontEndClass fec) {
+	public JPanel titlePanel(String name, FrontEndClass fec) {
 		JPanel titlePanel = new JPanel();
 		titlePanel.setBounds(514, 11, 417, 53);
 		titlePanel.setOpaque(false);
@@ -81,7 +83,7 @@ public class PeopleClass {
 		return titlePanel;
 	}
 	
-	private JPanel descPanel(String desc, FrontEndClass fec) {
+	public JPanel descPanel(String desc, FrontEndClass fec) {
 		JPanel descPanel = new JPanel();
 		descPanel.setBounds(291, 337, 616, 404);
 		descPanel.setOpaque(false);
@@ -207,7 +209,7 @@ public class PeopleClass {
 		return detailsPanel;
 	}
 	
-	private JPanel affiliationPanel() {
+	public JPanel affiliationPanel() {
 		JPanel affiliationPanel = new JPanel();
 		affiliationPanel.setBounds(119, 760, 912, 68);
 		affiliationPanel.setOpaque(false);

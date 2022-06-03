@@ -8,6 +8,19 @@ import javax.swing.*;
 import Encyclopedia.Menuclasses.*;
 
 public class TheBrain {
+	
+	static TheBrain instance = null;
+	
+	private TheBrain() {}
+	
+	public static TheBrain getInstance() {
+		if(instance != null)
+			return instance;
+		else {
+			instance = new TheBrain();
+			return instance;
+		}
+	}
 
 	public JPanel createBackgroundPanel(){
 		
@@ -33,6 +46,9 @@ public class TheBrain {
 		planetMenuCreator(planetMenu, backPanel);
 		jmb.add(planetMenu);
 		jmb.add(peopleMenuCreator(backPanel));
+		JMenu droidMenu = new JMenu("Droids");
+		droidMenuCreator(droidMenu, backPanel);
+		jmb.add(droidMenu);
 		JMenu faunaMenu = new JMenu("Fauna");
 		faunaMenuCreator(faunaMenu, backPanel);
 		jmb.add(faunaMenu);
@@ -97,6 +113,14 @@ public class TheBrain {
 	private void floraMenuCreator(JMenu menu, JPanel backPanel) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		FloraClass fC = new FloraClass();
 		ArrayList<JMenuItem> floraNameList = fC.createMenu(backPanel);
+		for(JMenuItem item : floraNameList) {
+			menu.add(item);
+		}
+	}
+	
+	private void droidMenuCreator(JMenu menu, JPanel backPanel) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		DroidClass dC = new DroidClass();
+		ArrayList<JMenuItem> floraNameList = dC.createMenu(backPanel);
 		for(JMenuItem item : floraNameList) {
 			menu.add(item);
 		}

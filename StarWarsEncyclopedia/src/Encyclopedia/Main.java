@@ -1,6 +1,7 @@
 package Encyclopedia;
 
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.sql.SQLException;
 import javax.swing.*;
 
@@ -53,7 +54,7 @@ public class Main {
 		frame.getContentPane().setLayout(null);
 		frame.setSize(1300, 900);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TheBrain brain = new TheBrain();
+		TheBrain brain = TheBrain.getInstance();
 		JPanel backPanel = brain.createBackgroundPanel();
 		frame.getContentPane().add(backPanel);
 		frame.setJMenuBar(brain.createMenu(backPanel));

@@ -8,7 +8,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DataManagement {
-	//Singleton??
+	
+	static DataManagement instance = null;
+	
+	private DataManagement() {}
+	
+	public static DataManagement getInstance() {
+		if(instance != null)
+			return instance;
+		else {
+			instance = new DataManagement();
+			return instance;
+		}
+	}
+	
 	private Connection createConnection() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		Connection con = null;
 		String url = "jdbc:mysql://localhost:3306/starwars";
@@ -33,6 +46,9 @@ public class DataManagement {
 	private String createNamesQuery(String type) {
 		String query = null;
 		switch(type) {
+		case "droids":
+			query = "SELECT name FROM droids";
+			break;
 		case "floras":
 			query = "SELECT name FROM floras";
 			break;
@@ -143,14 +159,43 @@ public class DataManagement {
 		return result;
 	}
 	public Object[] getFloraData(String name) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		//TO-DO
-		Object[] result = new Object[10];
+		Object[] result = new Object[8];
 		Connection con = createConnection();
-		PreparedStatement ps = con.prepareStatement("SELECT * FROM faunas WHERE name = ?" );
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM floras WHERE name = ?" );
 		ps.setString(1, name);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
-			
+			result[0] = rs.getInt(1);
+			result[1] = rs.getString(2);
+			result[2] = rs.getString(3);
+			result[3] = rs.getString(4);
+			result[4] = rs.getString(5);
+			result[5] = rs.getString(6);
+			result[6] = rs.getString(7);
+			result[7] = rs.getString(8);
+		}
+		con.close();
+		return result;
+	}
+	
+	public Object[] getDroidData(String name) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		Object[] result = new Object[11];
+		Connection con = createConnection();
+		PreparedStatement ps = con.prepareStatement("SELECT * FROM droids WHERE name = ?" );
+		ps.setString(1, name);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			result[0] = rs.getInt(1);
+			result[1] = rs.getString(2);
+			result[2] = rs.getString(3);
+			result[3] = rs.getString(4);
+			result[4] = rs.getString(5);
+			result[5] = rs.getString(6);
+			result[6] = rs.getString(7);
+			result[7] = rs.getString(8);
+			result[8] = rs.getString(9);
+			result[9] = rs.getString(10);
+			result[10] = rs.getString(11);
 		}
 		con.close();
 		return result;
