@@ -41,18 +41,26 @@ public class TheBrain {
 	}
 	
 	public JMenuBar createMenu(JPanel backPanel) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		JMenuBar jmb = new JMenuBar();
-		JMenu planetMenu = new JMenu("Planets");
+		UIManager.put("MenuBar.selectionBackground", Color.BLUE);
+		UIManager.put("MenuBar.selectionForeground", Color.WHITE);
+		UIManager.put("Menu.selectionBackground", Color.BLUE);
+		UIManager.put("Menu.selectionForeground", Color.WHITE);
+		UIManager.put("MenuItem.selectionBackground", Color.BLUE);
+		UIManager.put("MenuItem.selectionForeground", Color.WHITE);
+		JMenuBar jmb = FrontEndClass.menuBarFrontEnd();
+		JMenu planetMenu = FrontEndClass.menuFrontEnd("Planets");
 		planetMenuCreator(planetMenu, backPanel);
 		jmb.add(planetMenu);
-		jmb.add(peopleMenuCreator(backPanel));
-		JMenu droidMenu = new JMenu("Droids");
+		JMenu peopleMenu = FrontEndClass.menuFrontEnd("People");
+		peopleMenuCreator(backPanel, peopleMenu);
+		jmb.add(peopleMenu);
+		JMenu droidMenu = FrontEndClass.menuFrontEnd("Droids");
 		droidMenuCreator(droidMenu, backPanel);
 		jmb.add(droidMenu);
-		JMenu faunaMenu = new JMenu("Fauna");
+		JMenu faunaMenu = FrontEndClass.menuFrontEnd("Fauna");
 		faunaMenuCreator(faunaMenu, backPanel);
 		jmb.add(faunaMenu);
-		JMenu floraMenu = new JMenu("Flora");
+		JMenu floraMenu = FrontEndClass.menuFrontEnd("Flora");
 		floraMenuCreator(floraMenu, backPanel);
 		jmb.add(floraMenu);
 		return jmb;
@@ -66,37 +74,34 @@ public class TheBrain {
 		}
 	}
 	
-	private JMenu peopleMenuCreator(JPanel backPanel) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		JMenu peopleMenu = new JMenu("People");
-		
-		JMenu jediMenu = new JMenu("Jedi");
+	private void peopleMenuCreator(JPanel backPanel, JMenu peopleMenu) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+		JMenu jediMenu = FrontEndClass.menuFrontEnd("Jedi");
 		peopleSubMenuCreator(jediMenu, backPanel);
 		peopleMenu.add(jediMenu);
-		JMenu sithMenu = new JMenu("Sith");
+		JMenu sithMenu = FrontEndClass.menuFrontEnd("Sith");
 		peopleSubMenuCreator(sithMenu, backPanel);
 		peopleMenu.add(sithMenu);
-		JMenu senatorMenu = new JMenu("Senator");
+		JMenu senatorMenu = FrontEndClass.menuFrontEnd("Senator");
 		peopleSubMenuCreator(senatorMenu, backPanel);
 		peopleMenu.add(senatorMenu);
-		JMenu crimeLordMenu = new JMenu("Crime lord");
+		JMenu crimeLordMenu = FrontEndClass.menuFrontEnd("Crime lord");
 		peopleSubMenuCreator(crimeLordMenu, backPanel);
 		peopleMenu.add(crimeLordMenu);
-		JMenu smugglerMenu = new JMenu("Smuggler");
+		JMenu smugglerMenu = FrontEndClass.menuFrontEnd("Smuggler");
 		peopleSubMenuCreator(smugglerMenu, backPanel);
 		peopleMenu.add(smugglerMenu);
-		JMenu bountyHunterMenu = new JMenu("Bounty hunter");
+		JMenu bountyHunterMenu = FrontEndClass.menuFrontEnd("Bounty hunter");
 		peopleSubMenuCreator(bountyHunterMenu, backPanel);
 		peopleMenu.add(bountyHunterMenu);
-		JMenu otherMenu = new JMenu("Other");
+		JMenu otherMenu = FrontEndClass.menuFrontEnd("Other");
 		peopleSubMenuCreator(otherMenu, backPanel);
 		peopleMenu.add(otherMenu);
-		return peopleMenu;
-	}
+   }
 	
 	private void peopleSubMenuCreator(JMenu menu, JPanel backPanel) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		ArrayList<JMenuItem> peopleNameList;
 		PeopleClass people = new PeopleClass();
-		peopleNameList = people.createMenu(backPanel,menu.getText());
+		peopleNameList = people.createMenu(backPanel, menu.getText());
 		for(JMenuItem item : peopleNameList) {
 			menu.add(item);
 		}

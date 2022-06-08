@@ -1,7 +1,6 @@
 package Encyclopedia;
 
 import java.awt.EventQueue;
-import java.awt.Image;
 import java.sql.SQLException;
 import javax.swing.*;
 

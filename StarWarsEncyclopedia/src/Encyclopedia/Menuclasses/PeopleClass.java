@@ -18,7 +18,7 @@ public class PeopleClass implements MenuInterface {
 		ArrayList<String> names = dm.getNames(type);
 		FrontEndClass fec = FrontEndClass.getInstance();
 		for(String name: names) {
-			JMenuItem menuItem = new JMenuItem(name);
+			JMenuItem menuItem = fec.menuItemFrontEnd(name);
 			menuItem.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {

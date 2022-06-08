@@ -19,7 +19,7 @@ public class PlanetClass implements MenuInterface {
 		FrontEndClass fec = FrontEndClass.getInstance();
 		names = dm.getNames("planets");
 		for(String name: names) {
-			JMenuItem menuItem = new JMenuItem(name);
+			JMenuItem menuItem = fec.menuItemFrontEnd(name);
 			menuItem.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {

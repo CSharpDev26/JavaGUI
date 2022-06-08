@@ -25,7 +25,7 @@ public class FloraClass implements MenuInterface {
 		FrontEndClass fec = FrontEndClass.getInstance();
 		names = dm.getNames("floras");
 		for(String name: names) {
-			JMenuItem menuItem = new JMenuItem(name);
+			JMenuItem menuItem = fec.menuItemFrontEnd(name);
 			menuItem.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
