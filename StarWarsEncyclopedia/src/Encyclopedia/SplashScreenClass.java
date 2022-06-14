@@ -1,18 +1,18 @@
 package Encyclopedia;
 
-import java.awt.Graphics2D;
-import java.awt.SplashScreen;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.IOException;
 
-import javax.print.attribute.standard.Media;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
+
 
 public class SplashScreenClass {
 
@@ -22,22 +22,28 @@ public class SplashScreenClass {
 		new JLabel("", new ImageIcon("images/splash/splash.gif"), SwingConstants.CENTER));
 		window.setSize(500, 303);
 		window.setVisible(true);
-		
-		
+		musicPlayer("splashsound/starwars.wav");
 		//window.setVisible(false);
-		//WDSWwindow.dispose();
+		//window.dispose();
 	}
 	
-	private void musicPlayer(String path){
-		InputStream music;
+	public static void musicPlayer(String path){
+		File audioFile = new File(path);
 		try {
-			music = new FileInputStream(new File(path));
-			//AudioStream aS = new AudioStream(music);
-			//AuidoPlayer
-		} catch (FileNotFoundException e) {
+			AudioInputStream audio = AudioSystem.getAudioInputStream(audioFile);
+			Clip clip = AudioSystem.getClip();
+			clip.open(audio);
+			clip.start();
+		} catch (UnsupportedAudioFileException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		  catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -40,7 +40,7 @@ public class Main {
 	 * @throws MalformedURLException 
 	 */
 	public Main() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		splash();
+		//splash();
 		initialize();
 		frame.setVisible(true);
 	}
@@ -62,6 +62,12 @@ public class Main {
 		JPanel backPanel = brain.createBackgroundPanel();
 		frame.getContentPane().add(backPanel);
 		frame.setJMenuBar(brain.createMenu(backPanel));
+		try {
+			splash();
+			Thread.sleep(2000);
+		}
+		catch(Exception e) {
+		}
 	}
 	private void splash() {
 		 SplashScreenClass.createSplash();
