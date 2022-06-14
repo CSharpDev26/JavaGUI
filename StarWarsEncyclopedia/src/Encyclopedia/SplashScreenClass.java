@@ -1,5 +1,9 @@
 package Encyclopedia;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 
@@ -9,41 +13,27 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JWindow;
-import javax.swing.SwingConstants;
 
-
-public class SplashScreenClass {
-
-	public static void createSplash() {
-		JWindow window = new JWindow();
-		window.getContentPane().add(
-		new JLabel("", new ImageIcon("images/splash/splash.gif"), SwingConstants.CENTER));
-		window.setSize(500, 303);
-		window.setVisible(true);
-		musicPlayer("splashsound/starwars.wav");
-		//window.setVisible(false);
-		//window.dispose();
+public class SplashScreenClass extends JWindow {
+		Clip clip; 
+	   Image splashScreen;
+	   ImageIcon imageIcon;
+	   public SplashScreenClass() {
+	      splashScreen = Toolkit.getDefaultToolkit().getImage("images/splash/splash.gif");
+	      imageIcon = new ImageIcon(splashScreen);
+	      setSize(imageIcon.getIconWidth(),imageIcon.getIconHeight());
+	      Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	      int x = (screenSize.width-getSize().width)/2;
+	      int y = (screenSize.height-getSize().height)/2;
+	      setLocation(x,y);
+	      setVisible(true);
+	   }
+	   public void paint(Graphics g) {
+	      super.paint(g);
+	      g.drawImage(splashScreen, 0, 0, this);
+	   }
+	   public Clip getSoundPlayer() {
+		   return clip;
+	   }
 	}
-	
-	public static void musicPlayer(String path){
-		File audioFile = new File(path);
-		try {
-			AudioInputStream audio = AudioSystem.getAudioInputStream(audioFile);
-			Clip clip = AudioSystem.getClip();
-			clip.open(audio);
-			clip.start();
-		} catch (UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		  catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-}
